@@ -4,7 +4,9 @@
 
 #include "TicTacToeFunctions.h"
 
-int TicTacToeBoard::CheckWin() {
+TicTacToeBoard::TicTacToeBoard() : board_{{0,0,0} {0,0,0} {0,0,0}} {}
+
+int TicTacToeBoard::CheckWin() const {
     //player 1 winning would equal 1, player two winning would equal 8, no winning would equal 0
     //the horizantal win conditions
     int win_state_one{board_.at(0).at(0) * board_.at(0).at(1) * board_.at(0).at(2)}; //the top horizantal line win condition

@@ -2,9 +2,12 @@
 #define TicTacToeFunctions_H
 
 #include <vector>
+
 class TicTacToeBoard {
  public:
-  int CheckWin();
+  TicTacToeBoard();
+  int CheckWin() const;
+  std::vector<std::vector<int>> GetBoard() const {return board_};
  private:
   std::vector<std::vector<int>> board_;
 }
