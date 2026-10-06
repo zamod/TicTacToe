@@ -2,6 +2,7 @@
 #define TicTacToeFunctions_H
 
 #include <vector>
+#include <utility>
 
 class TicTacToeBoard {
  public:
@@ -11,8 +12,8 @@ class TicTacToeBoard {
   void PrintBoard() const;
  private:
   std::vector<std::vector<int>> board_;
-  const char kplayer_one_X_{'X'};
-  const char kplayer_two_O_{'O'};
+  const std::pair<int, char> kplayer_one_1_and_X_{1, 'X'};
+  const std::pair<int, char> kplayer_two_2_and_O_{2, 'O'};
   const unsigned int kplayer_one_win_board_number_{1};
   const unsigned int kplayer_two_win_board_number_{8};
 }

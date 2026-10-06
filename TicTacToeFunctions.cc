@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "TicTacToeFunctions.h"
 
@@ -28,7 +29,20 @@ int TicTacToeBoard::CheckWin() const {
 }
 
 void TicTacToeBoard::PrintBoard() const {
-
+    for (const auto& row : board_) {
+        for (const auto& column : row) {
+            std::cout << "[";
+            if (row == kplayer_one_1_and_X_.first) { //if this row is equal to 1 (i.e. player one is here)
+                std::cout << kplayer_one_1_and_X_.second; //print X
+            } else if (row == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
+                std::cout << kplayer_two_2_and_O_.second; //print O
+            } else { //if nobody has claimed the square
+                std::cout << " "; //print a blank
+            }
+            std::cout "]";
+        }
+        std::cout << "\n"; //new line after completing a row
+    }
 }
 
 /*int CheckWin(const std::vector<std::vector<int>>& board_) { //player 1 winning would equal 1, player two winning would equal 8, no winning would equal 0
