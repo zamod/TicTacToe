@@ -56,9 +56,9 @@ void TicTacToeBoard::PlayerMakeAMove(int player_number) {
             for (const auto& column : row) {
                 std::cout << "[";
                 if (column == kplayer_one_1_and_X_.first) {
-                    std::cout << kplayer_one_1_and_X_.second;
+                    std::cout << " ";
                 } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
-                    std::cout << kplayer_two_2_and_O_.second; //print O
+                    std::cout << " ";
                 } else { //if nobody has claimed the square
                     std::cout << move_square_number;
                     possible_moves.push_back(move_square_number);
