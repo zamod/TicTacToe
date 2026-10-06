@@ -7,7 +7,7 @@
 
 #include "TicTacToeFunctions.h"
 
-TicTacToeBoard::TicTacToeBoard() : board_{{0,0,0} {0,0,0} {0,0,0}} {}
+TicTacToeBoard::TicTacToeBoard() : board_{{0,0,0}, {0,0,0}, {0,0,0}} {}
 
 int TicTacToeBoard::CheckWin() const {
     //player 1 winning would equal 1, player two winning would equal 8, no winning would equal 0
@@ -34,14 +34,14 @@ void TicTacToeBoard::PrintBoard() const {
     for (const auto& row : board_) {
         for (const auto& column : row) {
             std::cout << "[";
-            if (row == kplayer_one_1_and_X_.first) { //if this row is equal to 1 (i.e. player one is here)
+            if (column == kplayer_one_1_and_X_.first) { //if this row is equal to 1 (i.e. player one is here)
                 std::cout << kplayer_one_1_and_X_.second; //print X
-            } else if (row == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
+            } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
                 std::cout << kplayer_two_2_and_O_.second; //print O
             } else { //if nobody has claimed the square
                 std::cout << " "; //print a blank
             }
-            std::cout "]";
+            std::cout << "]";
         }
         std::cout << "\n"; //new line after completing a row
     }
@@ -55,9 +55,9 @@ void TicTacToeBoard::PlayerMakeAMove(int player_number) {
         for (const auto& row : board_) {
             for (const auto& column : row) {
                 std::cout << "[";
-                if (row == kplayer_one_1_and_X_.first) {
+                if (column == kplayer_one_1_and_X_.first) {
                     std::cout << kplayer_one_1_and_X_.second;
-                } else if (row == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
+                } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
                     std::cout << kplayer_two_2_and_O_.second; //print O
                 } else { //if nobody has claimed the square
                     std::cout << move_square_number;
@@ -69,7 +69,7 @@ void TicTacToeBoard::PlayerMakeAMove(int player_number) {
             std::cout << "\n";
         }
         std::cout << "Which spot would you like to choose? ";
-        while((!(std::cin >> player_move_choice)) || (std::find(possible_moves.begin(), possible_moves.end(), player_move_choice) == possible_moves.end)) { //if user enters a non-integer or enters an invalid move square number
+        while((!(std::cin >> player_move_choice)) || (std::find(possible_moves.begin(), possible_moves.end(), player_move_choice) == possible_moves.end())) { //if user enters a non-integer or enters an invalid move square number
             std::cout << "Invalid move choice. Please enter a valid move: ";
             std::cin.clear(); //clear error flag that cin threw
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard all the extra input, if any
@@ -98,10 +98,10 @@ void TicTacToeBoard::PlayerMakeAMove(int player_number) {
             board_.at(2).at(0) = player_number;
             break;
         case 8:
-            board.at(2).at(1) = player_number;
+            board_.at(2).at(1) = player_number;
             break;
         case 9:
-            board.at(2).at(2) = player_number;
+            board_.at(2).at(2) = player_number;
             break;
     }
 }

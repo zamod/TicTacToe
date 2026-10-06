@@ -8,7 +8,7 @@ class TicTacToeBoard {
  public:
   TicTacToeBoard();
   int CheckWin() const;
-  std::vector<std::vector<int>> GetBoard() const {return board_};
+  std::vector<std::vector<int>> GetBoard() const {return board_;};
   void PrintBoard() const;
   void PlayerMakeAMove(int player_number);
  private:
@@ -17,10 +17,10 @@ class TicTacToeBoard {
   const std::pair<int, char> kplayer_two_2_and_O_{2, 'O'};
   const unsigned int kplayer_one_win_board_number_{1};
   const unsigned int kplayer_two_win_board_number_{8};
-}
+};
 
-int CheckWin(const std::vector<std::vector<int>>& board);
+/*int CheckWin(const std::vector<std::vector<int>>& board);
 void PlayTicTacToe();
-void MainMenu();
+void MainMenu(); */
 
 #endif
