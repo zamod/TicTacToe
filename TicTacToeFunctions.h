@@ -10,6 +10,7 @@ class TicTacToeBoard {
   int CheckWin() const;
   std::vector<std::vector<int>> GetBoard() const {return board_};
   void PrintBoard() const;
+  void PlayerMakeAMove(int player_number);
  private:
   std::vector<std::vector<int>> board_;
   const std::pair<int, char> kplayer_one_1_and_X_{1, 'X'};
