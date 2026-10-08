@@ -41,7 +41,7 @@ int main() {
         return 0;
     }
     if (win_condition == 3) {
-        std cout << "It's a draw.\n";
+        std::cout << "It's a draw.\n";
     }
     return 1;
     //TODO: Logic to start the game against the perfect AI
