@@ -9,6 +9,11 @@
 
 TicTacToeBoard::TicTacToeBoard() : board_{{0,0,0}, {0,0,0}, {0,0,0}} {}
 
+void TicTacToeBoard::ClearScreen() const {
+    // \033[2J clears the screen, \033[H moves the cursor to the top-left corner
+    std::cout << "\033[2J\033[H";
+}
+
 int TicTacToeBoard::CheckWin() const {
     //player 1 winning would equal 1, player two winning would equal 8, no winning would equal 0
     //the horizantal win conditions
@@ -31,19 +36,43 @@ int TicTacToeBoard::CheckWin() const {
 }
 
 void TicTacToeBoard::PrintBoard() const {
+    int row_number{1};
+    int row_loop_count{1};
+    ClearScreen();
     for (const auto& row : board_) {
         for (const auto& column : row) {
-            std::cout << "[";
-            if (column == kplayer_one_1_and_X_.first) { //if this row is equal to 1 (i.e. player one is here)
-                std::cout << kplayer_one_1_and_X_.second; //print X
-            } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
-                std::cout << kplayer_two_2_and_O_.second; //print O
-            } else { //if nobody has claimed the square
-                std::cout << " "; //print a blank
+            if (row_loop_count < 3) {
+                std::cout << " ";
+                if (column == kplayer_one_1_and_X_.first) { //if this row is equal to 1 (i.e. player one is here)
+                    std::cout << kplayer_one_1_and_X_.second; //print X
+                } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
+                    std::cout << kplayer_two_2_and_O_.second; //print O
+                } else { //if nobody has claimed the square
+                    std::cout << " "; //print a blank
+                }
             }
-            std::cout << "]";
+            if (row_loop_count == 1 || row_loop_count == 2) {
+                std::cout << " |";
+            }
+            if (row_loop_count == 3) {
+                std::cout << " ";
+                if (column == kplayer_one_1_and_X_.first) { //if this row is equal to 1 (i.e. player one is here)
+                    std::cout << kplayer_one_1_and_X_.second; //print X
+                } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
+                    std::cout << kplayer_two_2_and_O_.second; //print O
+                } else { //if nobody has claimed the square
+                    std::cout << " "; //print a blank
+                }
+                std::cout << " \n";
+            }
+            ++row_loop_count;
+        }
+        row_loop_count = 1;
+        if (row_number == 1 || row_number == 2) {
+                std::cout << "\n___________\n";
         }
         std::cout << "\n"; //new line after completing a row
+        ++row_number;
     }
 }
 
@@ -56,9 +85,9 @@ void TicTacToeBoard::PlayerMakeAMove(int player_number) {
             for (const auto& column : row) {
                 std::cout << "[";
                 if (column == kplayer_one_1_and_X_.first) {
-                    std::cout << " ";
+                    std::cout << kplayer_one_1_and_X_.second;
                 } else if (column == kplayer_two_2_and_O_.first) { //if equal to 2 (i.e. is claimed by player two)
-                    std::cout << " ";
+                    std::cout << kplayer_two_2_and_O_.second;
                 } else { //if nobody has claimed the square
                     std::cout << move_square_number;
                     possible_moves.push_back(move_square_number);
@@ -103,5 +132,20 @@ void TicTacToeBoard::PlayerMakeAMove(int player_number) {
         case 9:
             board_.at(2).at(2) = player_number;
             break;
+    }
+}
+
+void TicTacToeBoard::AIMakeAMove(std::pair<int, int> cooridinates, int player_number) {
+    if (board_.at(cooridinates.first).at(cooridinates.second) != 0) {
+        std::cout << "Unkown Error, AI attempted to make an illegal move, no change was made to the board, please press ctrl-c to exit the program and try again as this error has no underlying code to properly handle.";
+        return;
+    }
+    if (player_number == 1) {
+        board_.at(cooridinates.first).at(cooridinates.second) = 1;
+        return;
+    }
+    if (player_number == 2) {
+        board_.at(cooridinates.first).at(cooridinates.second) = 2;
+        return;
     }
 }
