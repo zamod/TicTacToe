@@ -132,9 +132,9 @@ std::pair<int, int> TicTacToeAI::MakeMove(std::vector<std::vector<int>> board) {
                     }
                     column = 0;
                 }
-                column_count = 0;
                 ++column_count;
             }
+            column_count = 0;
             ++row_count;
         }
         if (last_move_.first == 0 && last_move_.second == 0) { //if last move was top left
