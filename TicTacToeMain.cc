@@ -40,6 +40,9 @@ int main() {
         std::cout << "Player 2 wins!\n";
         return 0;
     }
+    if (win_condition == 3) {
+        std cout << "It's a draw.\n";
+    }
     return 1;
     //TODO: Logic to start the game against the perfect AI
     /* working code sans AI

@@ -31,6 +31,8 @@ int TicTacToeBoard::CheckWin() const {
         return 1;
     } else if (win_state_one == kplayer_two_win_board_number_ || win_state_two == kplayer_two_win_board_number_ || win_state_three == kplayer_two_win_board_number_ || win_state_four == kplayer_two_win_board_number_ || win_state_five == kplayer_two_win_board_number_ || win_state_six == kplayer_two_win_board_number_ || win_state_seven == kplayer_two_win_board_number_ || win_state_eight == kplayer_two_win_board_number_) { //player 2 wins
         return 2;
+    } else if (win_state_one != 0 && win_state_two !=0 && win_state_three != 0 && win_state_three != 0 && win_state_four !=0 && win_state_five !=0 && win_state_six != 0 && win_state_seven !=0 && win_state_eight != 0) { //the stalemate
+        return 3;
     }
     return 0;
 }
